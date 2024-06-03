@@ -7,7 +7,7 @@ const PuppyList = ({ puppies, setSelectedPuppy, removePuppy }) => {
             <div className="puppy-container">
                 {puppies.map(puppy => (
                     <div key={puppy.id} className="puppy-card">
-                        <img src={puppy.image} alt={puppy.name} />
+                        <img src={puppy.imageUrl} alt={puppy.name} />
                         <h3>{puppy.name}</h3>
                         <p>Breed: {puppy.breed}</p>
                         <p>Status: {puppy.status}</p>
