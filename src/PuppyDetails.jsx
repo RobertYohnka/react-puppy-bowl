@@ -7,7 +7,7 @@ const PuppyDetails = ({ puppy, onBack }) => {
             <h3>{puppy.name}</h3>
             <p>Breed: {puppy.breed}</p>
             <p>Status: {puppy.status}</p>
-            <p>Team ID: {puppy.team}</p>
+            <p>Team ID: {puppy.teamId}</p>
             <button onClick={onBack}>Back to Roster</button>
         </div>
     );
