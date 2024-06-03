@@ -26,4 +26,3 @@ const PuppyForm = ({ addPuppy }) => {
 };
 
 export default PuppyForm;
-            )
