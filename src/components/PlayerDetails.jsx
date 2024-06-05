@@ -1,6 +1,6 @@
 import React from "react";
 
-const PuppyDetails = ({ puppy, onBack }) => {
+const PlayerDetails = ({ player, onBack }) => {
     return (
         <div className="puppy-datails">
             <img src={puppy.imageUrl} alt={puppy.name} />
@@ -13,4 +13,4 @@ const PuppyDetails = ({ puppy, onBack }) => {
     );
 };
 
-export default PuppyDetails;
+export default PlayerDetails;
