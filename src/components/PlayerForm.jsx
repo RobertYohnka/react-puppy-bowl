@@ -1,25 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-const playerForm = ({ addPlayer }) => {
+const PlayerForm = ({ addPlayer }) => {
     const [name, setName] = useState('');
     const [breed, setBreed] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const newPlayer = { name, breed };
-        addPlayer(newPlayer);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addPlayer({ name, breed, imageUrl });
         setName('');
         setBreed('');
+        setImageUrl('');
     };
 
-
     return (
-        <form id="newPuppyForm" onSubmit={handleSubmit}>
-            <input type="text" name="name" placeholder="Puppy Name" value={name} onChange={(event) => setName(event.target.value)} required />
-            <input type="text" name="breed" placeholder="Puppy Breed" value={breed} onChange={(event) => setBreed(event.target.value)} required />
-            <button type="submit">Add Puppy</button>
-        </form>
+        <>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Breed"
+                    value={breed}
+                    onChange={(e) => setBreed(e.target.value)}
+                    required
+                />
+                <input
+                    type="text"
+                    placeholder="Image URL"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                />
+                <button type="submit">Add Player</button>
+            </form>
+        </>
     );
 };
 
-export default playerForm;
+export default PlayerForm;

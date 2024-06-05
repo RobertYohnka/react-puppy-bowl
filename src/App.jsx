@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import playerForm from './components/playerForm';
-import playerList from './components/playerList';
-import playerDetails from './components/playerDetails';
+import PlayerForm from './components/PlayerForm';
+import PlayerList from './components/PlayerList';
+import PlayerDetails from './components/PlayerDetails';
 import './index.css';
 
-const cohortName = '2401-FTB-MT-WEB-PT'
+const cohortName = '2401-FTB-MT-WEB-PT';
 const APIURL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
-
 
 const App = () => {
   const [players, setPlayers] = useState([]);
@@ -35,17 +34,16 @@ const App = () => {
 
   const addPlayer = async (newPlayer) => {
     try {
-      const response = await fetch(`${APIURL}/players`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            name: newPlayer.name,
-            breed: newPlayer.breed,
-          }),
-        });
+      const response = await fetch(`${APIURL}/players`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: newPlayer.name,
+          breed: newPlayer.breed,
+        }),
+      });
       const result = await response.json();
       if (result.success) {
         setPlayers((prevPlayers) => [...prevPlayers, result.data.newPlayer]);
@@ -93,12 +91,11 @@ const App = () => {
         value={searchQuery}
         onChange={handleSearch}
       />
-      <playerForm addPlayer={addPlayer} />
-      <playerList players={filteredPlayers} setSelectedPlayer={setSelectedPlayer} removePlayer={removePlayer} />
-      {selectedPlayer && <playerDetails puppy={selectedPlayer} onBack={() => setSelectedPlayer(null)} />}
+      <PlayerForm addPlayer={addPlayer} />
+      <PlayerList players={filteredPlayers} setSelectedPlayer={setSelectedPlayer} removePlayer={removePlayer} />
+      {selectedPlayer && <PlayerDetails puppy={selectedPlayer} onBack={() => setSelectedPlayer(null)} />}
     </div>
   );
 };
 
 export default App;
-
