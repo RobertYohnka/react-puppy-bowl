@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import PlayerForm from './components/PlayerForm'
-import PlayerList from './components/PlayerList'
-import PlayerDetails from './components/PlayerDetails'
-import './index.css'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import playerForm from './components/playerForm';
+import playerList from './components/playerList';
+import playerDetails from './components/playerDetails';
+import './index.css';
 
 const cohortName = '2401-FTB-MT-WEB-PT'
 const APIURL = `https://fsa-puppy-bowl.herokuapp.com/api/${cohortName}`;
@@ -22,7 +22,7 @@ const App = () => {
         const result = await response.json();
         if (result.success) {
           setPlayers(result.data.players);
-          // setFilteredPlayers(result.data.players);
+          setFilteredPlayers(result.data.players);
         } else {
           console.error('Check the fetch call/response structure', result);
         }
@@ -32,19 +32,6 @@ const App = () => {
     };
     fetchAllPlayers();
   }, []);
-
-  return (
-    <div>
-      <h1>Puppy Bowl Puppies</h1>
-      <ul>
-        {players.map(player => (
-          <li key={player.id}>
-            {player.name} - {player.breed}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
 
   const addPlayer = async (newPlayer) => {
     try {
@@ -70,52 +57,48 @@ const App = () => {
       console.error('Unable to add puppy', err);
     }
   };
+
+  const removePlayer = async (id) => {
+    try {
+      const response = await fetch(`${APIURL}/players/${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        const updatedPlayers = players.filter(player => player.id !== id);
+        setPlayers(updatedPlayers);
+        setFilteredPlayers(updatedPlayers);
+      } else {
+        console.error(`Unable to remove puppyId #${id}.`);
+      }
+    } catch (err) {
+      console.error(`Unable to remove puppyId #${id}.`, err);
+    }
+  };
+
+  const handleSearch = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+    const filtered = players.filter(player =>
+      player.name.toLowerCase().includes(query)
+    );
+    setFilteredPlayers(filtered);
+  };
+
   return (
     <div>
-      <h1>Puppy Bowl Puppies</h1>
+      <h1>Puppy Bowl</h1>
+      <input
+        type="text"
+        placeholder="Search puppies..."
+        value={searchQuery}
+        onChange={handleSearch}
+      />
       <playerForm addPlayer={addPlayer} />
-      <PlayerList players={filteredPlayers} />
+      <playerList players={filteredPlayers} setSelectedPlayer={setSelectedPlayer} removePlayer={removePlayer} />
+      {selectedPlayer && <playerDetails puppy={selectedPlayer} onBack={() => setSelectedPlayer(null)} />}
     </div>
   );
 };
-
-// const removePuppy = async (id) => {
-//   try {
-//     const response = await axios.delete(`${APIURL}/players/${id}`);
-//     if (response.status === 204) {
-//       const updatedPuppies = puppies.filter(puppy => puppy.id !== id);
-//       setPuppies(updatedPuppies);
-//       setFilteredPuppies(updatedPuppies);
-//     }
-//   } catch (err) {
-//     console.error(`Unable to remove puppyId #${id}.`, err);
-//   }
-// };
-
-// const handleSearch = (event) => {
-//   const query = event.target.value.toLowerCase();
-//   setSearchQuery(query);
-//   const filteredPuppies = puppies.filter(puppy =>
-//     puppy.name.toLowerCase().includes(query)
-//   );
-//   setFilteredPuppies(filteredPuppies);
-// };
-
-// return (
-//   <div>
-//     <h1>Puppy Bowl</h1>
-//     <input
-//       type="text"
-//       placeholder="Search puppies..."
-//       value={searchQuery}
-//       onChange={handleSearch}
-//     />
-//     <PuppyForm addPuppy={addPuppy} />
-//     <PuppyList puppies={filteredPuppies} setSelectedPuppy={setSelectedPuppy} removePuppy={removePuppy} />
-//     {selectedPuppy && <PuppyDetails puppy={selectedPuppy} onBack={() => setSelectedPuppy(null)} />}
-//   </div>
-// );
-// };
 
 export default App;
 

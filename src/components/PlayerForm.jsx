@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PlayerForm = ({ addPlayer }) => {
+const playerForm = ({ addPlayer }) => {
     const [name, setName] = useState('');
     const [breed, setBreed] = useState('');
 
@@ -22,4 +22,4 @@ const PlayerForm = ({ addPlayer }) => {
     );
 };
 
-export default PlayerForm;
+export default playerForm;

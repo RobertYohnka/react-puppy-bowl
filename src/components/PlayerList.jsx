@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PlayerList = ({ players, setSelectedPlayer, removePlayer }) => {
+const playerList = ({ players, setSelectedPlayer, removePlayer }) => {
     return (
         <div>
             <h2>Puppies</h2>
@@ -22,4 +22,4 @@ const PlayerList = ({ players, setSelectedPlayer, removePlayer }) => {
     );
 };
 
-export default PlayerList;
+export default playerList;
