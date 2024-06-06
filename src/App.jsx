@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PlayerForm from './components/PlayerForm';
 import PlayerList from './components/PlayerList';
 import PlayerDetails from './components/PlayerDetails';
@@ -95,8 +95,14 @@ const App = () => {
         />
         <PlayerForm addPlayer={addPlayer} />
         <Routes>
+          <Route
             path="/"
-            element={<PlayerDetails player={selectedPlayer} onBack={() => setSelectedPlayer(null)} />}
+            element={<PlayerList players={filteredPlayers} setSelectedPlayer={setSelectedPlayer} removePlayer={removePlayer} />}
+          />
+          <Route
+            path="/players/:id"
+            element={<PlayerDetails players={players} />}
+          />
         </Routes>
       </div>
     </Router>

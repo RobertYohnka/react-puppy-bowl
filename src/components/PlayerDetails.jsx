@@ -1,8 +1,9 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-const PlayerDetails = ({ player, onBack }) => {
+const PlayerDetails = ({ players, onBack }) => {
     const { id } = useParams();
+    const player = players.find((player) => player.id === parseInt(id));
 
     if (!player) {
         return <p>Loading...</p>;
