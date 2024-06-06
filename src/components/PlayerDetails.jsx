@@ -1,19 +1,22 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 const PlayerDetails = ({ player, onBack }) => {
+    const { id } = useParams();
+
+    if (!player) {
+        return <p>Loading...</p>;
+    }
+
     return (
-        <>
-            <div className="player-details-container">
-                <button onClick={onBack} className="back-button">Back to Roster</button>
-                <div className="player-details-card">
-                    <img src={player.imageUrl} alt={player.name} className="player-details-imnage" />
-                    <h2>{player.name}</h2>
-                    <p><strong>Breed:</strong> {player.breed}</p>
-                    <p><strong>Status:</strong> {player.status}</p>
-                    <p><strong>Team ID:</strong> {player.teamId}</p>
-                </div>
-            </div>
-        </>
+        <div className="player-details">
+            <img src={player.imageUrl} alt={player.name} />
+            <h3>{player.name}</h3>
+            <p><strong>Breed:</strong> {player.breed}</p>
+            <p><strong>Status:</strong> {player.status}</p>
+            <p><strong>Team ID:</strong> {player.teamId}</p>
+            <button onClick={onBack}>Back to Roster</button>
+        </div>
     );
 };
 

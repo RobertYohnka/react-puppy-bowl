@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import PlayerForm from './components/PlayerForm';
 import PlayerList from './components/PlayerList';
 import PlayerDetails from './components/PlayerDetails';
@@ -83,18 +84,22 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Puppy Bowl</h1>
-      <input
-        type="text"
-        placeholder="Search puppies..."
-        value={searchQuery}
-        onChange={handleSearch}
-      />
-      <PlayerForm addPlayer={addPlayer} />
-      <PlayerList players={filteredPlayers} setSelectedPlayer={setSelectedPlayer} removePlayer={removePlayer} />
-      {selectedPlayer && <PlayerDetails player={selectedPlayer} onBack={() => setSelectedPlayer(null)} />}
-    </div>
+    <Router>
+      <div>
+        <h1>Puppy Bowl</h1>
+        <input
+          type="text"
+          placeholder="Search puppies..."
+          value={searchQuery}
+          onChange={handleSearch}
+        />
+        <PlayerForm addPlayer={addPlayer} />
+        <Routes>
+            path="/"
+            element={<PlayerDetails player={selectedPlayer} onBack={() => setSelectedPlayer(null)} />}
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
