@@ -1,11 +1,3 @@
-
-Let's review and ensure that the setSelectedPlayer function is properly passed and utilized in your App.jsx and PlayerList.jsx components.
-
-Updated App.jsx:
-Ensure that setSelectedPlayer is defined and passed to the PlayerList component.
-
-    jsx
-Copy code
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
