@@ -54,3 +54,46 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.player-details-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.back-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+.player-details-card {
+  display: inline-block;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.player-details-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.player-details-card h2 {
+  margin-top: 10px;
+}
+
+.player-details-card p {
+  margin: 5px 0;
+}

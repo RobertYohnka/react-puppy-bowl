@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import PlayerForm from './components/PlayerForm';
 import PlayerList from './components/PlayerList';
 import PlayerDetails from './components/PlayerDetails';
@@ -42,6 +41,7 @@ const App = () => {
         body: JSON.stringify({
           name: newPlayer.name,
           breed: newPlayer.breed,
+          imageUrl: newPlayer.imageUrl,
         }),
       });
       const result = await response.json();
@@ -93,7 +93,7 @@ const App = () => {
       />
       <PlayerForm addPlayer={addPlayer} />
       <PlayerList players={filteredPlayers} setSelectedPlayer={setSelectedPlayer} removePlayer={removePlayer} />
-      {selectedPlayer && <PlayerDetails puppy={selectedPlayer} onBack={() => setSelectedPlayer(null)} />}
+      {selectedPlayer && <PlayerDetails player={selectedPlayer} onBack={() => setSelectedPlayer(null)} />}
     </div>
   );
 };
