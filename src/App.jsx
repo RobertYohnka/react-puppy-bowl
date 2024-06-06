@@ -82,29 +82,31 @@ const App = () => {
     );
     setFilteredPlayers(filtered);
   };
-
   return (
     <Router>
-      <div>
-        <h1>Puppy Bowl</h1>
-        <input
-          type="text"
-          placeholder="Search puppies..."
-          value={searchQuery}
-          onChange={handleSearch}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div>
+              <h1>Puppy Bowl</h1>
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={handleSearch}
+              />
+              <PlayerForm addPlayer={addPlayer} />
+              <PlayerList
+                players={filteredPlayers}
+                setSelectedPlayer={setSelectedPlayer}
+                removePlayer={removePlayer}
+              />
+            </div>
+          }
         />
-        <PlayerForm addPlayer={addPlayer} />
-        <Routes>
-          <Route
-            path="/"
-            element={<PlayerList players={filteredPlayers} setSelectedPlayer={setSelectedPlayer} removePlayer={removePlayer} />}
-          />
-          <Route
-            path="/players/:id"
-            element={<PlayerDetails players={players} />}
-          />
-        </Routes>
-      </div>
+        <Route path="/player/:id" element={<PlayerDetails players={players} />} />
+      </Routes>
     </Router>
   );
 };

@@ -25,6 +25,9 @@ body {
   width: 200px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .puppy-card h3 {
@@ -39,16 +42,17 @@ body {
   width: 100%;
   height: auto;
   border-radius: 5px;
+  max-width: 150px;
 }
 
 button {
-  margin-top: 10px;
-  padding: 5px 10px;
+  margin-top: 20px;
+  padding: 10px 20px;
   border: none;
   background-color: #007bff;
   color: white;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 button:hover {
@@ -56,41 +60,30 @@ button:hover {
 }
 
 .player-details-container {
-  text-align: center;
-  padding: 20px;
-}
-
-.back-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.back-button:hover {
-  background-color: #0056b3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
 }
 
 .player-details-card {
-  display: inline-block;
-  background-color: #f9f9f9;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 20px;
-  width: 300px;
+  width: 400px;
+  text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .player-details-image {
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 50px;
+  margin-bottom: 20px;
 }
 
-.player-details-card h2 {
+.player-details-card h3 {
   margin-top: 10px;
 }
 
